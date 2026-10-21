@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0d2037" />
+  <title>Admin Review | Advisor Capital Admin</title>
+  <link rel="stylesheet" href="advisor-capital-matchmaking-admin.css" />
+  <script src="admin-review.js" defer></script>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand"><div class="brand-mark">AC</div><div><div class="brand-name">Advisor Capital</div><div class="brand-sub">Admin workspace</div></div></div>
+      <div class="nav-label">Workspace</div>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="overview.html"><span class="nav-icon">⌂</span>Overview</a>
+        <a href="members.html"><span class="nav-icon">♙</span>Members</a>
+        <a href="admin-review.html" class="active"><span class="nav-icon">▤</span>Admin Review</a>
+        <a href="advisor-capital-matchmaking-admin.html"><span class="nav-icon">⇄</span>Matchmaking</a>
+        <a href="subscriptions.html"><span class="nav-icon">▧</span>Subscriptions</a>
+        <a href="notifications.html"><span class="nav-icon">✉</span>Notifications</a>
+      </nav>
+      <div class="nav-label">Administration</div>
+      <nav class="nav" aria-label="Administration">
+        <a href="settings.html"><span class="nav-icon">⚙</span>Settings</a>
+        <a href="activity-log.html"><span class="nav-icon">◷</span>Activity log</a>
+      </nav>
+      <div class="sidebar-bottom"><div class="admin-chip"><div class="avatar">SA</div><div><div class="admin-name">Site Administrator</div><div class="admin-role">Administrator</div></div></div></div>
+    </aside>
+    <main class="main">
+      <header class="topbar"><div class="crumb">Admin workspace <span style="padding:0 7px;color:#bdc6cf">/</span> <strong>Admin Review</strong></div><div class="top-actions"><span class="env-pill">Prototype · Sample data</span><button class="icon-btn" aria-label="Notifications">♧</button><div class="top-avatar">SA</div></div></header>
+      <section class="content">
+        <div class="page-head"><div><h1>Admin Review</h1><div class="subtitle">Review buyer and seller applications before adding them to the approved members pool.</div></div></div>
+        <div class="notice"><span class="notice-icon">ⓘ</span><div>Approving an application moves that member to the <strong>Members</strong> page and makes them available for matchmaking suggestions.</div></div>
+        <section class="panel">
+          <div class="panel-head"><div><div class="panel-title">Pending member applications</div><div class="panel-help">Review and approve members before they join the overall pool.</div></div></div>
+          <div class="filters"><div class="search-wrap"><span class="search-icon">⌕</span><input class="search" id="reviewSearch" type="search" placeholder="Search applicants" aria-label="Search applicants" /></div></div>
+          <div class="tabs" role="tablist" aria-label="Application type">
+            <button class="tab active" id="reviewBuyersTab" type="button" role="tab" aria-controls="reviewBuyers" aria-selected="true">Buyers <span class="tab-count" id="pendingBuyersCount">0</span></button>
+            <button class="tab" id="reviewSellersTab" type="button" role="tab" aria-controls="reviewSellers" aria-selected="false">Sellers <span class="tab-count" id="pendingSellersCount">0</span></button>
+          </div>
+          <div class="table-wrap">
+            <table class="review-table" id="reviewBuyers" role="tabpanel" aria-labelledby="reviewBuyersTab">
+              <thead><tr><th>Applicant</th><th>Profile ID</th><th>Region</th><th>Profile summary</th><th>Review</th></tr></thead>
+              <tbody>
+                <tr data-member-id="M-515" data-member-type="buyer" data-search="Emma Wilson M-515 Ontario succession buyer">
+                  <td>Emma Wilson</td><td>M-515</td><td>Ontario</td><td>Buyer applicant seeking an Ontario advisory practice.</td>
+                  <td><button class="mini-btn approve" type="button" data-action="approve">Approve</button></td>
+                </tr>
+                <tr data-member-id="M-516" data-member-type="buyer" data-search="Capital Path Partners M-516 Alberta buyer">
+                  <td>Capital Path Partners</td><td>M-516</td><td>Alberta</td><td>Buyer applicant exploring Alberta opportunities.</td>
+                  <td><button class="mini-btn approve" type="button" data-action="approve">Approve</button></td>
+                </tr>
+              </tbody>
+            </table>
+            <table class="review-table" id="reviewSellers" role="tabpanel" aria-labelledby="reviewSellersTab" hidden>
+              <thead><tr><th>Applicant</th><th>Profile ID</th><th>Region</th><th>Profile summary</th><th>Review</th></tr></thead>
+              <tbody>
+                <tr data-member-id="M-620" data-member-type="seller" data-search="Willow Creek Advisory M-620 British Columbia seller">
+                  <td>Willow Creek Advisory</td><td>M-620</td><td>British Columbia</td><td>Seller applicant with a British Columbia advisory practice.</td>
+                  <td><button class="mini-btn approve" type="button" data-action="approve">Approve</button></td>
+                </tr>
+                <tr data-member-id="M-621" data-member-type="seller" data-search="Laurentian Wealth M-621 Quebec seller">
+                  <td>Laurentian Wealth</td><td>M-621</td><td>Quebec</td><td>Seller applicant with a Quebec advisory practice.</td>
+                  <td><button class="mini-btn approve" type="button" data-action="approve">Approve</button></td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="empty" id="reviewEmpty"><strong>No pending applications</strong>All matching applicants have been reviewed.</div>
+          </div>
+          <div class="table-foot"><span id="reviewSummary">Pending member applications · Sample records for demonstration</span></div>
+        </section>
+        <div class="footer-note">Advisor Capital · Internal admin prototype · Sample member data</div>
+      </section>
+    </main>
+  </div>
+  <div class="toast" id="reviewToast" role="status" aria-live="polite"></div>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0d2037" />
+  <title>Members | Advisor Capital Admin</title>
+  <link rel="stylesheet" href="advisor-capital-matchmaking-admin.css" />
+  <script src="members.js" defer></script>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand"><div class="brand-mark">AC</div><div><div class="brand-name">Advisor Capital</div><div class="brand-sub">Admin workspace</div></div></div>
+      <div class="nav-label">Workspace</div>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="overview.html"><span class="nav-icon">⌂</span>Overview</a>
+        <a href="members.html" class="active"><span class="nav-icon">♙</span>Members</a>
+        <a href="admin-review.html"><span class="nav-icon">▤</span>Admin Review</a>
+        <a href="advisor-capital-matchmaking-admin.html"><span class="nav-icon">⇄</span>Matchmaking</a>
+        <a href="subscriptions.html"><span class="nav-icon">▧</span>Subscriptions</a>
+        <a href="notifications.html"><span class="nav-icon">✉</span>Notifications</a>
+      </nav>
+      <div class="nav-label">Administration</div>
+      <nav class="nav" aria-label="Administration">
+        <a href="settings.html"><span class="nav-icon">⚙</span>Settings</a>
+        <a href="activity-log.html"><span class="nav-icon">◷</span>Activity log</a>
+      </nav>
+      <div class="sidebar-bottom"><div class="admin-chip"><div class="avatar">SA</div><div><div class="admin-name">Site Administrator</div><div class="admin-role">Administrator</div></div></div></div>
+    </aside>
+    <main class="main">
+      <header class="topbar"><div class="crumb">Admin workspace <span style="padding:0 7px;color:#bdc6cf">/</span> <strong>Members</strong></div><div class="top-actions"><span class="env-pill">Prototype · Sample data</span><button class="icon-btn" aria-label="Notifications">♧</button><div class="top-avatar">SA</div></div></header>
+      <section class="content">
+        <div class="page-head"><div><h1>Members</h1><div class="subtitle">Browse and manage buyer and seller member profiles.</div></div><div class="head-actions"><button class="btn btn-primary" type="button">＋ &nbsp;Add member</button></div></div>
+        <div class="tabs member-workspace-tabs" role="tablist" aria-label="Member workspaces">
+          <button class="tab active" id="buyersTab" type="button" role="tab" aria-controls="buyersPanel" aria-selected="true">Buyer Workspace <span class="tab-count">6</span></button>
+          <button class="tab" id="sellersTab" type="button" role="tab" aria-controls="sellersPanel" aria-selected="false">Seller Workspace <span class="tab-count">6</span></button>
+        </div>
+        <section class="panel member-table" id="buyersPanel" role="tabpanel" aria-labelledby="buyersTab">
+          <div class="panel-head"><div><div class="panel-title">Buyer members</div><div class="panel-help">Members seeking an advisory practice opportunity.</div></div></div>
+          <div class="filters"><div class="search-wrap"><span class="search-icon">⌕</span><input class="search" type="search" placeholder="Search buyers" aria-label="Search buyers" /></div></div>
+          <div class="table-wrap"><table><thead><tr><th>Member</th><th>Profile ID</th><th>Region</th><th>Profile status</th><th>Actions</th></tr></thead><tbody>
+            <tr data-type="buyer" data-name="Maya Chen" data-id="M-204" data-region="Ontario" data-profile="Buyer seeking an Ontario succession opportunity."><td>Maya Chen</td><td>M-204</td><td>Ontario</td><td><span class="status approved member-status">Active</span></td><td class="row-actions"></td></tr>
+            <tr data-type="buyer" data-name="Prairie Financial Group" data-id="M-301" data-region="Alberta" data-profile="Buyer exploring advisory practice opportunities in Alberta."><td>Prairie Financial Group</td><td>M-301</td><td>Alberta</td><td><span class="status approved member-status">Active</span></td><td class="row-actions"></td></tr>
+            <tr data-type="buyer" data-name="Ava Thompson" data-id="M-161" data-region="British Columbia" data-profile="Buyer interested in regional advisory practices."><td>Ava Thompson</td><td>M-161</td><td>British Columbia</td><td><span class="status approved member-status">Active</span></td><td class="row-actions"></td></tr>
+            <tr data-type="buyer" data-name="Groupe Conseil Laurentides" data-id="M-275" data-region="Quebec" data-profile="Buyer seeking a French-speaking succession opportunity in Quebec."><td>Groupe Conseil Laurentides</td><td>M-275</td><td>Quebec</td><td><span class="status approved member-status">Active</span></td><td class="row-actions"></td></tr>
+            <tr data-type="buyer" data-name="Oliver Grant" data-id="M-129" data-region="Ontario" data-profile="Buyer interested in Ontario advisory practices."><td>Oliver Grant</td><td>M-129</td><td>Ontario</td><td><span class="status approved member-status">Active</span></td><td class="row-actions"></td></tr>
+            <tr data-type="buyer" data-name="Summit Wealth" data-id="M-291" data-region="Alberta" data-profile="Buyer seeking growth through an Alberta practice acquisition."><td>Summit Wealth</td><td>M-291</td><td>Alberta</td><td><span class="status approved member-status">Active</span></td><td class="row-actions"></td></tr>
+            <tr data-type="buyer" data-name="Emma Wilson" data-id="M-515" data-region="Ontario" data-profile="Buyer applicant seeking an Ontario advisory practice." data-default-approved="false" hidden><td>Emma Wilson</td><td>M-515</td><td>Ontario</td><td><span class="status pending member-status">Pending approval</span></td><td class="row-actions"></td></tr>
+            <tr data-type="buyer" data-name="Capital Path Partners" data-id="M-516" data-region="Alberta" data-profile="Buyer applicant exploring Alberta opportunities." data-default-approved="false" hidden><td>Capital Path Partners</td><td>M-516</td><td>Alberta</td><td><span class="status pending member-status">Pending approval</span></td><td class="row-actions"></td></tr>
+          </tbody></table></div>
+        </section>
+        <section class="panel member-table" id="sellersPanel" role="tabpanel" aria-labelledby="sellersTab" hidden>
+          <div class="panel-head"><div><div class="panel-title">Seller members</div><div class="panel-help">Members with advisory practices available for succession.</div></div></div>
+          <div class="filters"><div class="search-wrap"><span class="search-icon">⌕</span><input class="search" type="search" placeholder="Search sellers" aria-label="Search sellers" /></div></div>
+          <div class="table-wrap"><table><thead><tr><th>Member</th><th>Profile ID</th><th>Region</th><th>Profile status</th><th>Actions</th></tr></thead><tbody>
+            <tr data-type="seller" data-name="Cedar Ridge Advisory" data-id="M-118" data-region="Ontario" data-profile="Ontario advisory practice available for succession."><td>Cedar Ridge Advisory</td><td>M-118</td><td>Ontario</td><td><span class="status approved member-status">Active</span></td><td class="row-actions"></td></tr>
+            <tr data-type="seller" data-name="Noah Patel" data-id="M-087" data-region="Alberta" data-profile="Alberta advisory practice available for succession."><td>Noah Patel</td><td>M-087</td><td>Alberta</td><td><span class="status approved member-status">Active</span></td><td class="row-actions"></td></tr>
+            <tr data-type="seller" data-name="North Shore Advisory" data-id="M-442" data-region="British Columbia" data-profile="British Columbia advisory practice available for succession."><td>North Shore Advisory</td><td>M-442</td><td>British Columbia</td><td><span class="status approved member-status">Active</span></td><td class="row-actions"></td></tr>
+            <tr data-type="seller" data-name="Louis Martin" data-id="M-056" data-region="Quebec" data-profile="Quebec advisory practice available for succession."><td>Louis Martin</td><td>M-056</td><td>Quebec</td><td><span class="status approved member-status">Active</span></td><td class="row-actions"></td></tr>
+            <tr data-type="seller" data-name="Maple Leaf Advisors" data-id="M-082" data-region="Ontario" data-profile="Ontario advisory practice available for succession."><td>Maple Leaf Advisors</td><td>M-082</td><td>Ontario</td><td><span class="status approved member-status">Active</span></td><td class="row-actions"></td></tr>
+            <tr data-type="seller" data-name="Sophie Tremblay" data-id="M-330" data-region="Alberta" data-profile="Alberta advisory practice available for succession."><td>Sophie Tremblay</td><td>M-330</td><td>Alberta</td><td><span class="status approved member-status">Active</span></td><td class="row-actions"></td></tr>
+            <tr data-type="seller" data-name="Willow Creek Advisory" data-id="M-620" data-region="British Columbia" data-profile="Seller applicant with a British Columbia advisory practice." data-default-approved="false" hidden><td>Willow Creek Advisory</td><td>M-620</td><td>British Columbia</td><td><span class="status pending member-status">Pending approval</span></td><td class="row-actions"></td></tr>
+            <tr data-type="seller" data-name="Laurentian Wealth" data-id="M-621" data-region="Quebec" data-profile="Seller applicant with a Quebec advisory practice." data-default-approved="false" hidden><td>Laurentian Wealth</td><td>M-621</td><td>Quebec</td><td><span class="status pending member-status">Pending approval</span></td><td class="row-actions"></td></tr>
+          </tbody></table></div>
+        </section>
+        <div class="footer-note">Advisor Capital · Internal admin prototype · Sample member data</div>
+      </section>
+    </main>
+  </div>
+  <div class="modal-backdrop" id="memberModalBackdrop" role="dialog" aria-modal="true" aria-labelledby="memberModalTitle">
+    <div class="modal">
+      <div class="modal-head"><div><h2 id="memberModalTitle">Member profile</h2><p id="memberModalSubtitle"></p></div><button class="close" id="closeMemberModal" aria-label="Close">×</button></div>
+      <div class="modal-body"><div class="detail-pair" id="memberModalInfo"></div><div class="detail-section"><h3>Profile summary</h3><p id="memberModalProfile"></p></div></div>
+      <div class="modal-foot"><button class="btn" id="closeMemberModalFooter" type="button">Close</button></div>
+    </div>
+  </div>
+  <div class="modal-backdrop" id="suggestionsModalBackdrop" role="dialog" aria-modal="true" aria-labelledby="suggestionsModalTitle">
+    <div class="modal">
+      <div class="modal-head"><div><h2 id="suggestionsModalTitle">Matchmaking suggestions</h2><p id="suggestionsModalSubtitle">Active sample suggestions from the opposite member type.</p></div><button class="close" id="closeSuggestionsModal" aria-label="Close">×</button></div>
+      <div class="modal-body"><div class="suggestion-list" id="suggestionList"></div></div>
+    </div>
+  </div>
+  <div class="toast" id="memberToast" role="status" aria-live="polite"></div>
+</body>
+</html>

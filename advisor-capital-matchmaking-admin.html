@@ -1,0 +1,123 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0d2037" />
+  <title>Matchmaking Review | Advisor Capital Admin</title>
+    <link rel="stylesheet" href="advisor-capital-matchmaking-admin.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand"><div class="brand-mark">AC</div><div><div class="brand-name">Advisor Capital</div><div class="brand-sub">Admin workspace</div></div></div>
+      <div class="nav-label">Workspace</div>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="overview.html"><span class="nav-icon">⌂</span>Overview</a>
+        <a href="members.html"><span class="nav-icon">♙</span>Members</a>
+        <a href="admin-review.html"><span class="nav-icon">▤</span>Admin Review</a>
+        <a href="advisor-capital-matchmaking-admin.html" class="active"><span class="nav-icon">⇄</span>Matchmaking <span class="nav-count" id="sidebarCount">4</span></a>
+        <a href="subscriptions.html"><span class="nav-icon">▧</span>Subscriptions</a>
+        <a href="notifications.html"><span class="nav-icon">✉</span>Notifications</a>
+      </nav>
+      <div class="nav-label">Administration</div>
+      <nav class="nav" aria-label="Administration">
+        <a href="settings.html"><span class="nav-icon">⚙</span>Settings</a>
+        <a href="activity-log.html"><span class="nav-icon">◷</span>Activity log</a>
+      </nav>
+      <div class="sidebar-bottom"><div class="admin-chip"><div class="avatar">SA</div><div><div class="admin-name">Site Administrator</div><div class="admin-role">Administrator</div></div></div></div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="crumb">Admin workspace <span style="padding:0 7px;color:#bdc6cf">/</span> <strong id="pageBreadcrumb">Matchmaking review</strong></div>
+        <div class="top-actions"><span class="env-pill">Prototype · Sample data</span><button class="icon-btn" aria-label="Notifications">♧</button><div class="top-avatar">SA</div></div>
+      </header>
+      <section class="content">
+        <div class="page-head">
+          <div><h1>Manual matchmaking</h1><div class="subtitle">An Advisor Capital user reviews profiles and creates each buyer–seller pairing.</div></div>
+          <div class="head-actions"><button class="btn" id="exportBtn">↓ &nbsp;Export queue</button><button class="btn btn-primary" id="createMatchBtn">＋ &nbsp;Create manual match</button></div>
+        </div>
+        <div class="notice"><span class="notice-icon">ⓘ</span><div><strong>Manual workflow.</strong> An authorized Advisor Capital user selects a buyer and seller, records the reason for pairing, and manages the review status. This prototype does not calculate matches or contact members.</div></div>
+
+        <div class="stats" aria-label="Matchmaking summary">
+          <div class="stat"><div><div class="stat-label">Awaiting review</div><div class="stat-value" id="statPending">4</div><div class="stat-note">Manually created pairings</div></div><div class="stat-icon">◷</div></div>
+          <div class="stat"><div><div class="stat-label">Approved this month</div><div class="stat-value" id="statApproved">2</div><div class="stat-note">Sample dashboard figure</div></div><div class="stat-icon">✓</div></div>
+          <div class="stat"><div><div class="stat-label">On hold</div><div class="stat-value" id="statHold">1</div><div class="stat-note">Need more information</div></div><div class="stat-icon">Ⅱ</div></div>
+          <div class="stat"><div><div class="stat-label">Matching mode</div><div class="stat-value" style="font-size:21px">Manual</div><div class="stat-note">Managed by Advisor Capital</div></div><div class="stat-icon">✎</div></div>
+        </div>
+
+        <section class="panel">
+          <div class="panel-head"><div><div class="panel-title">Manually created pairings</div><div class="panel-help">Each pairing is selected and documented by an Advisor Capital user.</div></div></div>
+          <div class="filters">
+            <div class="search-wrap"><span class="search-icon">⌕</span><input class="search" id="searchInput" type="search" placeholder="Search by member, region or ID" /></div>
+            <select class="select" id="regionFilter" aria-label="Filter by region"><option value="all">All regions</option><option>Ontario</option><option>Alberta</option><option>British Columbia</option><option>Quebec</option></select>
+          </div>
+          <div class="tabs" id="matchStatusTabs" role="tablist" aria-label="Match status">
+            <button class="tab active" data-tab="pending" role="tab">Pending review <span class="tab-count" id="tabPending">4</span></button>
+            <button class="tab" data-tab="approved" role="tab">Approved <span class="tab-count" id="tabApproved">2</span></button>
+            <button class="tab" data-tab="hold" role="tab">On hold <span class="tab-count" id="tabHold">1</span></button>
+            <button class="tab" data-tab="dismissed" role="tab">Dismissed <span class="tab-count" id="tabDismissed">1</span></button>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Buyer and seller</th><th>Admin rationale</th><th>Region</th><th>Created by</th><th>Created</th><th>Status</th><th>Actions</th></tr></thead>
+              <tbody id="matchRows">
+                <tr data-status="pending" data-region="Ontario" data-buyer="Maya Chen" data-buyer-id="M-204" data-seller="Cedar Ridge Advisory" data-seller-id="M-118" data-rationale="Buyer is exploring an Ontario succession opportunity; admin review required." data-search="Maya Chen Cedar Ridge Advisory Ontario M-204 M-118">
+                  <td><div class="pair-cell"><div class="person"><div class="avatar">MC</div><div><div class="person-name">Maya Chen</div><div class="person-meta">Buyer · M-204</div></div></div><span class="pair-arrow">↔</span><div class="person"><div class="avatar">CR</div><div><div class="person-name">Cedar Ridge Advisory</div><div class="person-meta">Seller · M-118</div></div></div></div></td><td class="rationale">Buyer is exploring an Ontario succession opportunity; admin review required.</td><td>Ontario</td><td>Sarah Morgan</td><td>Oct 21, 2026</td><td><span class="status pending">Pending review</span></td><td><div class="row-actions"><button class="mini-btn" data-action="details">Details</button><button class="mini-btn approve" data-action="approve">Approve</button></div></td>
+                </tr>
+                <tr data-status="pending" data-region="Alberta" data-buyer="Prairie Financial Group" data-buyer-id="M-301" data-seller="Noah Patel" data-seller-id="M-087" data-rationale="Potential fit based on the administrator’s review of practice size and succession timing." data-search="Prairie Financial Group Noah Patel Alberta M-087 M-301">
+                  <td><div class="pair-cell"><div class="person"><div class="avatar">PF</div><div><div class="person-name">Prairie Financial Group</div><div class="person-meta">Buyer · M-301</div></div></div><span class="pair-arrow">↔</span><div class="person"><div class="avatar">NP</div><div><div class="person-name">Noah Patel</div><div class="person-meta">Seller · M-087</div></div></div></div></td><td class="rationale">Potential fit based on the administrator’s review of practice size and succession timing.</td><td>Alberta</td><td>Sarah Morgan</td><td>Oct 21, 2026</td><td><span class="status pending">Pending review</span></td><td><div class="row-actions"><button class="mini-btn" data-action="details">Details</button><button class="mini-btn approve" data-action="approve">Approve</button></div></td>
+                </tr>
+                <tr data-status="pending" data-region="British Columbia" data-buyer="Ava Thompson" data-buyer-id="M-161" data-seller="North Shore Advisory" data-seller-id="M-442" data-rationale="Administrator identified shared regional and practice interests; verify details before approval." data-search="Ava Thompson North Shore Advisory British Columbia M-161 M-442">
+                  <td><div class="pair-cell"><div class="person"><div class="avatar">AT</div><div><div class="person-name">Ava Thompson</div><div class="person-meta">Buyer · M-161</div></div></div><span class="pair-arrow">↔</span><div class="person"><div class="avatar">NS</div><div><div class="person-name">North Shore Advisory</div><div class="person-meta">Seller · M-442</div></div></div></div></td><td class="rationale">Administrator identified shared regional and practice interests; verify details before approval.</td><td>British Columbia</td><td>Michael Chen</td><td>Oct 20, 2026</td><td><span class="status pending">Pending review</span></td><td><div class="row-actions"><button class="mini-btn" data-action="details">Details</button><button class="mini-btn approve" data-action="approve">Approve</button></div></td>
+                </tr>
+                <tr data-status="pending" data-region="Quebec" data-buyer="Groupe Conseil Laurentides" data-buyer-id="M-275" data-seller="Louis Martin" data-seller-id="M-056" data-rationale="Manually paired for review after checking language preference and location." data-search="Groupe Conseil Laurentides Louis Martin Quebec M-056 M-275">
+                  <td><div class="pair-cell"><div class="person"><div class="avatar">GL</div><div><div class="person-name">Groupe Conseil Laurentides</div><div class="person-meta">Buyer · M-275</div></div></div><span class="pair-arrow">↔</span><div class="person"><div class="avatar">LM</div><div><div class="person-name">Louis Martin</div><div class="person-meta">Seller · M-056</div></div></div></div></td><td class="rationale">Manually paired for review after checking language preference and location.</td><td>Quebec</td><td>Michael Chen</td><td>Oct 19, 2026</td><td><span class="status pending">Pending review</span></td><td><div class="row-actions"><button class="mini-btn" data-action="details">Details</button><button class="mini-btn approve" data-action="approve">Approve</button></div></td>
+                </tr>
+                <tr data-status="approved" data-region="Ontario" data-buyer="Oliver Grant" data-buyer-id="M-129" data-seller="Maple Leaf Advisors" data-seller-id="M-082" data-rationale="Approved after Advisor Capital administrator review." data-search="Oliver Grant Maple Leaf Advisors Ontario M-129 M-082">
+                  <td><div class="pair-cell"><div class="person"><div class="avatar">OG</div><div><div class="person-name">Oliver Grant</div><div class="person-meta">Buyer · M-129</div></div></div><span class="pair-arrow">↔</span><div class="person"><div class="avatar">ML</div><div><div class="person-name">Maple Leaf Advisors</div><div class="person-meta">Seller · M-082</div></div></div></div></td><td class="rationale">Approved after Advisor Capital administrator review.</td><td>Ontario</td><td>Sarah Morgan</td><td>Oct 18, 2026</td><td><span class="status approved">Approved</span></td><td><div class="row-actions"><button class="mini-btn" data-action="details">Details</button></div></td>
+                </tr>
+                <tr data-status="approved" data-region="Alberta" data-buyer="Summit Wealth" data-buyer-id="M-291" data-seller="Sophie Tremblay" data-seller-id="M-330" data-rationale="Approved after profile review by an Advisor Capital administrator." data-search="Summit Wealth Sophie Tremblay Alberta M-330 M-291">
+                  <td><div class="pair-cell"><div class="person"><div class="avatar">SW</div><div><div class="person-name">Summit Wealth</div><div class="person-meta">Buyer · M-291</div></div></div><span class="pair-arrow">↔</span><div class="person"><div class="avatar">ST</div><div><div class="person-name">Sophie Tremblay</div><div class="person-meta">Seller · M-330</div></div></div></div></td><td class="rationale">Approved after profile review by an Advisor Capital administrator.</td><td>Alberta</td><td>Michael Chen</td><td>Oct 17, 2026</td><td><span class="status approved">Approved</span></td><td><div class="row-actions"><button class="mini-btn" data-action="details">Details</button></div></td>
+                </tr>
+                <tr data-status="hold" data-region="Ontario" data-buyer="Ethan Wilson" data-buyer-id="M-412" data-seller="Wilson Advisory" data-seller-id="M-255" data-rationale="Hold for additional profile information before proceeding." data-search="Ethan Wilson Wilson Advisory Ontario M-412 M-255">
+                  <td><div class="pair-cell"><div class="person"><div class="avatar">EW</div><div><div class="person-name">Ethan Wilson</div><div class="person-meta">Buyer · M-412</div></div></div><span class="pair-arrow">↔</span><div class="person"><div class="avatar">WA</div><div><div class="person-name">Wilson Advisory</div><div class="person-meta">Seller · M-255</div></div></div></div></td><td class="rationale">Hold for additional profile information before proceeding.</td><td>Ontario</td><td>Sarah Morgan</td><td>Oct 16, 2026</td><td><span class="status hold">On hold</span></td><td><div class="row-actions"><button class="mini-btn" data-action="details">Details</button><button class="mini-btn" data-action="resume">Reopen</button></div></td>
+                </tr>
+                <tr data-status="dismissed" data-region="British Columbia" data-buyer="Pacific Coast Financial" data-buyer-id="M-199" data-seller="Grace Lee" data-seller-id="M-218" data-rationale="Pairing closed by administrator after review." data-search="Grace Lee Pacific Coast Financial British Columbia M-218 M-199">
+                  <td><div class="pair-cell"><div class="person"><div class="avatar">PC</div><div><div class="person-name">Pacific Coast Financial</div><div class="person-meta">Buyer · M-199</div></div></div><span class="pair-arrow">↔</span><div class="person"><div class="avatar">GL</div><div><div class="person-name">Grace Lee</div><div class="person-meta">Seller · M-218</div></div></div></div></td><td class="rationale">Pairing closed by administrator after review.</td><td>British Columbia</td><td>Michael Chen</td><td>Oct 15, 2026</td><td><span class="status dismissed">Dismissed</span></td><td><div class="row-actions"><button class="mini-btn" data-action="details">Details</button></div></td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="empty" id="emptyState"><strong>No matches found</strong>Try changing the search or filters.</div>
+          </div>
+          <div class="table-foot"><span id="rowSummary">Showing 4 pairings awaiting review · Sample records for demonstration</span><div class="pagination"><button class="page-num">‹</button><button class="page-num current">1</button><button class="page-num">2</button><button class="page-num">›</button></div></div>
+        </section>
+        <div class="footer-note">Advisor Capital · Internal admin prototype · Sample member data</div>
+      </section>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal">
+      <div class="modal-head"><div><h2 id="modalTitle">Manual pairing details</h2><p id="modalSubtitle">Created and managed by an Advisor Capital user</p></div><button class="close" id="closeModal" aria-label="Close">×</button></div>
+      <div class="modal-body"><div class="detail-pair" id="detailPair"></div><div class="detail-section"><h3>Administrator rationale</h3><p id="detailSignals"></p></div><div class="detail-section"><h3>Next step</h3><p>Changing the review status does not send a notification or share contact details. Member introductions should follow the approved Advisor Capital process.</p></div></div>
+      <div class="modal-foot"><button class="btn" id="modalHold">Place on hold</button><button class="btn btn-primary" id="modalApprove">Approve pairing</button></div>
+    </div>
+  </div>
+  <div class="modal-backdrop" id="createModalBackdrop" role="dialog" aria-modal="true" aria-labelledby="createModalTitle">
+    <form class="modal" id="createMatchForm">
+      <div class="modal-head"><div><h2 id="createModalTitle">Create a manual pairing</h2><p>Select one buyer and one seller, then record why you are pairing them.</p></div><button class="close" type="button" id="closeCreateModal" aria-label="Close">×</button></div>
+      <div class="modal-body">
+        <div class="detail-section"><label class="detail-label" for="buyerSelect">Buyer</label><select class="search" id="buyerSelect" required><option value="">Select a buyer</option><option value="Maya Chen|M-204">Maya Chen · M-204</option><option value="Prairie Financial Group|M-301">Prairie Financial Group · M-301</option><option value="Ava Thompson|M-161">Ava Thompson · M-161</option><option value="Groupe Conseil Laurentides|M-275">Groupe Conseil Laurentides · M-275</option><option value="Oliver Grant|M-129">Oliver Grant · M-129</option><option value="Summit Wealth|M-291">Summit Wealth · M-291</option><option value="Emma Wilson|M-515" data-review-member="true" disabled>Emma Wilson · M-515</option><option value="Capital Path Partners|M-516" data-review-member="true" disabled>Capital Path Partners · M-516</option></select></div>
+        <div class="detail-section"><label class="detail-label" for="sellerSelect">Seller</label><select class="search" id="sellerSelect" required><option value="">Select a seller</option><option value="Cedar Ridge Advisory|M-118">Cedar Ridge Advisory · M-118</option><option value="Noah Patel|M-087">Noah Patel · M-087</option><option value="North Shore Advisory|M-442">North Shore Advisory · M-442</option><option value="Louis Martin|M-056">Louis Martin · M-056</option><option value="Maple Leaf Advisors|M-082">Maple Leaf Advisors · M-082</option><option value="Sophie Tremblay|M-330">Sophie Tremblay · M-330</option><option value="Willow Creek Advisory|M-620" data-review-member="true" disabled>Willow Creek Advisory · M-620</option><option value="Laurentian Wealth|M-621" data-review-member="true" disabled>Laurentian Wealth · M-621</option></select></div>
+        <div class="detail-section"><label class="detail-label" for="matchRegion">Region</label><select class="search" id="matchRegion" required><option value="">Select a region</option><option>Ontario</option><option>Alberta</option><option>British Columbia</option><option>Quebec</option></select></div>
+        <div class="detail-section"><label class="detail-label" for="matchRationale">Administrator rationale</label><textarea class="search" id="matchRationale" rows="3" required placeholder="Briefly record why this buyer and seller are being paired."></textarea></div>
+        <div class="detail-section"><div class="detail-label">Created by</div><p style="margin:0;color:#53677b;font-size:11px">Signed-in Advisor Capital user</p></div>
+      </div>
+      <div class="modal-foot"><button class="btn" type="button" id="cancelCreate">Cancel</button><button class="btn btn-primary" type="submit">Save pairing for review</button></div>
+    </form>
+  </div>
+    <script src="advisor-capital-matchmaking-admin.js" defer></script>
+</body>
+</html>

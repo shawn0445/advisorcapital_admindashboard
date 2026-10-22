@@ -27,20 +27,21 @@
     let visible = 0;
 
     rows.forEach(row => {
-      const stored = JSON.parse(localStorage.getItem(`subscription-${row.dataset.id}`) || '{}');
-      const status = stored.status || row.dataset.status;
+      const isFree = row.dataset.status === 'free';
+      const stored = isFree ? {} : JSON.parse(localStorage.getItem(`subscription-${row.dataset.id}`) || '{}');
+      const status = isFree ? 'free' : stored.status || row.dataset.status;
       const endDate = stored.endDate || row.dataset.end;
       row.dataset.currentStatus = status;
-      row.querySelector('.start-date').textContent = formatDate(stored.startDate || row.dataset.start);
-      row.querySelector('.end-date').textContent = formatDate(endDate);
+      row.querySelector('.start-date').textContent = isFree ? '—' : formatDate(stored.startDate || row.dataset.start);
+      row.querySelector('.end-date').textContent = isFree ? '—' : formatDate(endDate);
 
       const statusBadge = row.querySelector('.subscription-status');
-      statusBadge.className = `status subscription-status ${status === 'active' ? 'approved' : status === 'ended' ? 'dismissed' : 'pending'}`;
-      statusBadge.textContent = status === 'past-due' ? 'Past due' : status === 'ended' ? 'Ended manually' : status === 'trial' ? 'Trial' : 'Active';
+      statusBadge.className = `status subscription-status ${status === 'active' || status === 'free' ? 'approved' : status === 'ended' ? 'dismissed' : 'pending'}`;
+      statusBadge.textContent = status === 'free' ? 'Free · no charge' : status === 'past-due' ? 'Past due' : status === 'ended' ? 'Ended manually' : status === 'trial' ? 'Trial' : 'Active';
 
       const actionCell = row.querySelector('.row-actions');
       actionCell.replaceChildren();
-      if (status !== 'ended') {
+      if (!isFree && status !== 'ended') {
         const endButton = document.createElement('button');
         endButton.type = 'button';
         endButton.className = 'mini-btn';
@@ -49,7 +50,7 @@
         actionCell.append(endButton);
       }
 
-      counts[status] = (counts[status] || 0) + 1;
+      if (status !== 'free') counts[status] = (counts[status] || 0) + 1;
       const matches = row.textContent.toLowerCase().includes(query);
       row.hidden = !matches;
       if (matches) visible++;
@@ -59,7 +60,7 @@
     document.getElementById('trialCount').textContent = counts.trial;
     document.getElementById('pastDueCount').textContent = counts['past-due'];
     document.getElementById('endedCount').textContent = counts.ended;
-    summary.textContent = `Showing ${visible} of ${rows.length} sample subscriptions.`;
+    summary.textContent = `Showing ${visible} of ${rows.length} sample memberships · one paid tier: Premium Buyer.`;
   }
 
   search.addEventListener('input', render);

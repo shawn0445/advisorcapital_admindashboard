@@ -6,6 +6,7 @@
   <meta name="theme-color" content="#0d2037" />
   <title>Members | Advisor Capital Admin</title>
   <link rel="stylesheet" href="advisor-capital-matchmaking-admin.css" />
+  <script src="member-profiles.js" defer></script>
   <script src="members.js" defer></script>
 </head>
 <body>
@@ -18,6 +19,7 @@
         <a href="members.html" class="active"><span class="nav-icon">♙</span>Members</a>
         <a href="admin-review.html"><span class="nav-icon">▤</span>Admin Review</a>
         <a href="advisor-capital-matchmaking-admin.html"><span class="nav-icon">⇄</span>Matchmaking</a>
+        <a href="seller-alerts.html"><span class="nav-icon">◉</span>Seller Alerts</a>
         <a href="subscriptions.html"><span class="nav-icon">▧</span>Subscriptions</a>
         <a href="notifications.html"><span class="nav-icon">✉</span>Notifications</a>
       </nav>
@@ -32,6 +34,7 @@
       <header class="topbar"><div class="crumb">Admin workspace <span style="padding:0 7px;color:#bdc6cf">/</span> <strong>Members</strong></div><div class="top-actions"><span class="env-pill">Prototype · Sample data</span><button class="icon-btn" aria-label="Notifications">♧</button><div class="top-avatar">SA</div></div></header>
       <section class="content">
         <div class="page-head"><div><h1>Members</h1><div class="subtitle">Browse and manage buyer and seller member profiles.</div></div><div class="head-actions"><button class="btn btn-primary" type="button">＋ &nbsp;Add member</button></div></div>
+        <div class="notice score-guidance"><span class="notice-icon">ⓘ</span><div><strong>AC Score guidance · Sample scores only.</strong> 0–59 = low; 60–69 = good; 70–80 = strong; 81–90 = very strong; 91–100 = exceptional. Scores are illustrative and are not calculated.</div></div>
         <div class="tabs member-workspace-tabs" role="tablist" aria-label="Member workspaces">
           <button class="tab active" id="buyersTab" type="button" role="tab" aria-controls="buyersPanel" aria-selected="true">Buyer Workspace <span class="tab-count">6</span></button>
           <button class="tab" id="sellersTab" type="button" role="tab" aria-controls="sellersPanel" aria-selected="false">Seller Workspace <span class="tab-count">6</span></button>
@@ -71,14 +74,8 @@
   <div class="modal-backdrop" id="memberModalBackdrop" role="dialog" aria-modal="true" aria-labelledby="memberModalTitle">
     <div class="modal">
       <div class="modal-head"><div><h2 id="memberModalTitle">Member profile</h2><p id="memberModalSubtitle"></p></div><button class="close" id="closeMemberModal" aria-label="Close">×</button></div>
-      <div class="modal-body"><div class="detail-pair" id="memberModalInfo"></div><div class="detail-section"><h3>Profile summary</h3><p id="memberModalProfile"></p></div></div>
+      <div class="modal-body"><div class="detail-pair" id="memberModalInfo"></div></div>
       <div class="modal-foot"><button class="btn" id="closeMemberModalFooter" type="button">Close</button></div>
-    </div>
-  </div>
-  <div class="modal-backdrop" id="suggestionsModalBackdrop" role="dialog" aria-modal="true" aria-labelledby="suggestionsModalTitle">
-    <div class="modal">
-      <div class="modal-head"><div><h2 id="suggestionsModalTitle">Matchmaking suggestions</h2><p id="suggestionsModalSubtitle">Active sample suggestions from the opposite member type.</p></div><button class="close" id="closeSuggestionsModal" aria-label="Close">×</button></div>
-      <div class="modal-body"><div class="suggestion-list" id="suggestionList"></div></div>
     </div>
   </div>
   <div class="toast" id="memberToast" role="status" aria-live="polite"></div>

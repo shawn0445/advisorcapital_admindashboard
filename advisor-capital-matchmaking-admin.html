@@ -6,6 +6,7 @@
   <meta name="theme-color" content="#0d2037" />
   <title>Matchmaking Review | Advisor Capital Admin</title>
     <link rel="stylesheet" href="advisor-capital-matchmaking-admin.css" />
+    <script src="member-profiles.js" defer></script>
 </head>
 <body>
   <div class="app">
@@ -17,6 +18,7 @@
         <a href="members.html"><span class="nav-icon">♙</span>Members</a>
         <a href="admin-review.html"><span class="nav-icon">▤</span>Admin Review</a>
         <a href="advisor-capital-matchmaking-admin.html" class="active"><span class="nav-icon">⇄</span>Matchmaking <span class="nav-count" id="sidebarCount">4</span></a>
+        <a href="seller-alerts.html"><span class="nav-icon">◉</span>Seller Alerts</a>
         <a href="subscriptions.html"><span class="nav-icon">▧</span>Subscriptions</a>
         <a href="notifications.html"><span class="nav-icon">✉</span>Notifications</a>
       </nav>
@@ -38,7 +40,7 @@
           <div><h1>Manual matchmaking</h1><div class="subtitle">An Advisor Capital user reviews profiles and creates each buyer–seller pairing.</div></div>
           <div class="head-actions"><button class="btn" id="exportBtn">↓ &nbsp;Export queue</button><button class="btn btn-primary" id="createMatchBtn">＋ &nbsp;Create manual match</button></div>
         </div>
-        <div class="notice"><span class="notice-icon">ⓘ</span><div><strong>Manual workflow.</strong> An authorized Advisor Capital user selects a buyer and seller, records the reason for pairing, and manages the review status. This prototype does not calculate matches or contact members.</div></div>
+        <div class="notice"><span class="notice-icon">ⓘ</span><div><strong>Manual workflow.</strong> An authorized Advisor Capital user selects a buyer and seller, records the reason for pairing, and manages the review status. AC Score is not shown for a pairing because each member has an individual score. Approved pairings provide buyer and seller contact actions.</div></div>
 
         <div class="stats" aria-label="Matchmaking summary">
           <div class="stat"><div><div class="stat-label">Awaiting review</div><div class="stat-value" id="statPending">4</div><div class="stat-note">Manually created pairings</div></div><div class="stat-icon">◷</div></div>

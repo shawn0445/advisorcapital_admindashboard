@@ -70,23 +70,75 @@
         const cell = row.querySelector('.status');
         cell.className = `status ${status}`;
         cell.textContent = statusText[status];
-        const actions = row.querySelector('.row-actions');
-        if (status === 'pending') {
-          actions.innerHTML = '<button class="mini-btn" data-action="details">Details</button><button class="mini-btn approve" data-action="approve">Approve</button>';
-        } else if (status === 'hold') {
-          actions.innerHTML = '<button class="mini-btn" data-action="details">Details</button><button class="mini-btn" data-action="resume">Reopen</button>';
-        } else {
-          actions.innerHTML = '<button class="mini-btn" data-action="details">Details</button>';
-        }
+        renderActions(row);
         counts(); render();
       }
-      function memberCard(label, name, id) {
-        return `<div class="detail-box"><div class="detail-label">${label}</div><div class="person"><div class="avatar">${escapeHtml(initials(name))}</div><div><div class="person-name">${escapeHtml(name)}</div><div class="person-meta">Profile ${escapeHtml(id)}</div></div></div></div>`;
+
+      function profileValue(type, name, id, region, label) {
+        const profile = window.MemberProfiles.getProfile(type, id, name, region);
+        return profile.find(([, field]) => field === label)?.[2] || '';
       }
+
+      function renderActions(row) {
+        const actions = row.querySelector('.row-actions');
+        actions.replaceChildren();
+        const details = document.createElement('button');
+        details.type = 'button';
+        details.className = 'mini-btn';
+        details.dataset.action = 'details';
+        details.textContent = 'Details';
+        actions.append(details);
+
+        if (row.dataset.status === 'pending') {
+          const approve = document.createElement('button');
+          approve.type = 'button';
+          approve.className = 'mini-btn approve';
+          approve.dataset.action = 'approve';
+          approve.textContent = 'Approve';
+          actions.append(approve);
+        } else if (row.dataset.status === 'hold') {
+          const reopen = document.createElement('button');
+          reopen.type = 'button';
+          reopen.className = 'mini-btn';
+          reopen.dataset.action = 'resume';
+          reopen.textContent = 'Reopen';
+          actions.append(reopen);
+        } else if (row.dataset.status === 'approved') {
+          [
+            ['buyer', row.dataset.buyer, row.dataset.buyerId, 'Call buyer', 'phone', 'tel'],
+            ['buyer', row.dataset.buyer, row.dataset.buyerId, 'Email buyer', 'email', 'mailto'],
+            ['seller', row.dataset.seller, row.dataset.sellerId, 'Call seller', 'phone', 'tel'],
+            ['seller', row.dataset.seller, row.dataset.sellerId, 'Email seller', 'email', 'mailto']
+          ].forEach(([type, name, id, label, field, scheme]) => {
+            const contact = profileValue(type, name, id, row.dataset.region, field === 'phone' ? 'Phone number' : 'Email address');
+            if (!contact) return;
+            const link = document.createElement('a');
+            link.className = 'mini-btn';
+            link.textContent = label;
+            link.href = `${scheme}:${field === 'phone' ? contact.replace(/[^\d+]/g, '') : contact}`;
+            actions.append(link);
+          });
+        }
+      }
+
       function openDetails(row) {
         selectedRow = row;
         document.getElementById('modalSubtitle').textContent = `${row.dataset.region} · Created by ${row.dataset.createdBy || 'Advisor Capital user'} · ${row.dataset.created || ''}`;
-        document.getElementById('detailPair').innerHTML = memberCard('Buyer', row.dataset.buyer, row.dataset.buyerId) + memberCard('Seller', row.dataset.seller, row.dataset.sellerId);
+        const detailPair = document.getElementById('detailPair');
+        detailPair.replaceChildren();
+        [
+          ['Buyer', 'buyer', row.dataset.buyer, row.dataset.buyerId],
+          ['Seller', 'seller', row.dataset.seller, row.dataset.sellerId]
+        ].forEach(([label, type, name, id]) => {
+          const card = document.createElement('section');
+          card.className = 'detail-box match-member-card';
+          const heading = document.createElement('h3');
+          heading.className = 'detail-label';
+          heading.textContent = `${label} · ${id}`;
+          card.append(heading);
+          window.MemberProfiles.appendProfileFields(card, window.MemberProfiles.getProfile(type, id, name, row.dataset.region));
+          detailPair.append(card);
+        });
         document.getElementById('detailSignals').textContent = row.dataset.rationale || 'No rationale entered.';
         document.getElementById('modalApprove').style.display = row.dataset.status === 'pending' ? '' : 'none';
         document.getElementById('modalHold').style.display = row.dataset.status === 'pending' ? '' : 'none';
@@ -103,7 +155,8 @@
         row.dataset.seller = sellerName; row.dataset.sellerId = sellerId;
         row.dataset.rationale = rationale; row.dataset.createdBy = 'Current admin'; row.dataset.created = today;
         row.dataset.search = `${searchValue} ${rationale} Current admin`;
-        row.innerHTML = `<td><div class="pair-cell"><div class="person"><div class="avatar">${escapeHtml(initials(buyerName))}</div><div><div class="person-name">${escapeHtml(buyerName)}</div><div class="person-meta">Buyer · ${escapeHtml(buyerId)}</div></div></div><span class="pair-arrow">↔</span><div class="person"><div class="avatar">${escapeHtml(initials(sellerName))}</div><div><div class="person-name">${escapeHtml(sellerName)}</div><div class="person-meta">Seller · ${escapeHtml(sellerId)}</div></div></div></div></td><td class="rationale">${escapeHtml(rationale)}</td><td>${escapeHtml(region)}</td><td>Current admin</td><td>${escapeHtml(today)}</td><td><span class="status pending">Pending review</span></td><td><div class="row-actions"><button class="mini-btn" data-action="details">Details</button><button class="mini-btn approve" data-action="approve">Approve</button></div></td>`;
+        row.innerHTML = `<td><div class="pair-cell"><div class="person"><div class="avatar">${escapeHtml(initials(buyerName))}</div><div><div class="person-name">${escapeHtml(buyerName)}</div><div class="person-meta">Buyer · ${escapeHtml(buyerId)}</div></div></div><span class="pair-arrow">↔</span><div class="person"><div class="avatar">${escapeHtml(initials(sellerName))}</div><div><div class="person-name">${escapeHtml(sellerName)}</div><div class="person-meta">Seller · ${escapeHtml(sellerId)}</div></div></div></div></td><td class="rationale">${escapeHtml(rationale)}</td><td>${escapeHtml(region)}</td><td>Current admin</td><td>${escapeHtml(today)}</td><td><span class="status pending">Pending review</span></td><td><div class="row-actions"></div></td>`;
+        renderActions(row);
         tbody.prepend(row);
       }
       tbody.addEventListener('click', e => {
@@ -151,6 +204,7 @@
         announce('Manual pairing added to the review queue. No member was contacted.');
       });
       document.getElementById('exportBtn').addEventListener('click', () => announce('Export is a visual placeholder in this prototype.'));
+      rows().forEach(renderActions);
       updateMemberOptions(buyerSelect);
       updateMemberOptions(sellerSelect);
       const params = new URLSearchParams(window.location.search);
@@ -167,7 +221,9 @@
           if ([...regionSelect.options].some(option => option.value === requestedRegion || option.textContent === requestedRegion)) {
             regionSelect.value = requestedRegion;
           }
-          rationaleInput.value = 'Suggested pairing selected from the Members workspace; administrator review required.';
+          rationaleInput.value = params.get('ad')
+            ? `Selected from seller alert ${params.get('ad')}; administrator review required.`
+            : 'Suggested pairing selected from the Members workspace; administrator review required.';
           createBackdrop.classList.add('show');
         } else {
           announce('The selected buyer or seller is unavailable. Disabled members cannot be paired.');

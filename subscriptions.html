@@ -18,6 +18,7 @@
         <a href="members.html"><span class="nav-icon">♙</span>Members</a>
         <a href="admin-review.html"><span class="nav-icon">▤</span>Admin Review</a>
         <a href="advisor-capital-matchmaking-admin.html"><span class="nav-icon">⇄</span>Matchmaking</a>
+        <a href="seller-alerts.html"><span class="nav-icon">◉</span>Seller Alerts</a>
         <a href="subscriptions.html" class="active"><span class="nav-icon">▧</span>Subscriptions</a>
         <a href="notifications.html"><span class="nav-icon">✉</span>Notifications</a>
       </nav>
@@ -30,19 +31,28 @@
       <section class="content">
         <div class="page-head"><div><h1>Subscriptions</h1><div class="subtitle">Monitor member plans and subscription status.</div></div></div>
         <div class="stats" aria-label="Subscription summary">
-          <div class="stat"><div><div class="stat-label">Active plans</div><div class="stat-value" id="activeCount">0</div><div class="stat-note">Current subscriptions</div></div><div class="stat-icon">✓</div></div>
+          <div class="stat"><div><div class="stat-label">Premium buyers</div><div class="stat-value" id="activeCount">0</div><div class="stat-note">Only paid membership tier</div></div><div class="stat-icon">✓</div></div>
           <div class="stat"><div><div class="stat-label">Trial plans</div><div class="stat-value" id="trialCount">0</div><div class="stat-note">Evaluation period</div></div><div class="stat-icon">◷</div></div>
           <div class="stat"><div><div class="stat-label">Past due</div><div class="stat-value" id="pastDueCount">0</div><div class="stat-note">Needs administrator review</div></div><div class="stat-icon">!</div></div>
           <div class="stat"><div><div class="stat-label">Ended</div><div class="stat-value" id="endedCount">0</div><div class="stat-note">Ended subscriptions</div></div><div class="stat-icon">Ⅱ</div></div>
         </div>
-        <section class="panel"><div class="panel-head"><div><div class="panel-title">Member subscriptions</div><div class="panel-help">Review plan dates and end a subscription manually when needed.</div></div></div>
+        <section class="panel"><div class="panel-head"><div><div class="panel-title">Membership plans</div><div class="panel-help">Premium Buyer is the only paid tier. Free Buyer and Seller memberships have no charge.</div></div></div>
           <div class="filters"><div class="search-wrap"><span class="search-icon">⌕</span><input class="search" id="subscriptionSearch" type="search" placeholder="Search member or plan" aria-label="Search subscriptions" /></div></div>
           <div class="table-wrap"><table><thead><tr><th>Member</th><th>Plan</th><th>Billing period</th><th>Start date</th><th>End date</th><th>Status</th><th>Actions</th></tr></thead><tbody id="subscriptionRows">
-            <tr data-id="M-204" data-status="active" data-start="2026-05-21" data-end="2026-11-21"><td>Maya Chen · M-204</td><td>Buyer Professional</td><td>Monthly</td><td class="start-date"></td><td class="end-date"></td><td><span class="status subscription-status"></span></td><td class="row-actions"></td></tr>
-            <tr data-id="M-118" data-status="active" data-start="2025-12-01" data-end="2026-12-01"><td>Cedar Ridge Advisory · M-118</td><td>Seller Plus</td><td>Annual</td><td class="start-date"></td><td class="end-date"></td><td><span class="status subscription-status"></span></td><td class="row-actions"></td></tr>
-            <tr data-id="M-087" data-status="past-due" data-start="2026-09-18" data-end="2026-10-18"><td>Noah Patel · M-087</td><td>Seller Standard</td><td>Monthly</td><td class="start-date"></td><td class="end-date"></td><td><span class="status subscription-status"></span></td><td class="row-actions"></td></tr>
+            <tr data-id="M-204" data-status="active" data-start="2026-05-21" data-end="2026-11-21"><td>Maya Chen · M-204</td><td class="subscription-paid">Premium Buyer</td><td>Monthly</td><td class="start-date"></td><td class="end-date"></td><td><span class="status subscription-status"></span></td><td class="row-actions"></td></tr>
+            <tr data-id="M-301" data-status="free"><td>Prairie Financial Group · M-301</td><td>Free Buyer</td><td>No charge</td><td class="start-date"></td><td class="end-date"></td><td><span class="status subscription-status"></span></td><td class="row-actions"></td></tr>
+            <tr data-id="M-161" data-status="free"><td>Ava Thompson · M-161</td><td>Free Buyer</td><td>No charge</td><td class="start-date"></td><td class="end-date"></td><td><span class="status subscription-status"></span></td><td class="row-actions"></td></tr>
+            <tr data-id="M-275" data-status="free"><td>Groupe Conseil Laurentides · M-275</td><td>Free Buyer</td><td>No charge</td><td class="start-date"></td><td class="end-date"></td><td><span class="status subscription-status"></span></td><td class="row-actions"></td></tr>
+            <tr data-id="M-129" data-status="free"><td>Oliver Grant · M-129</td><td>Free Buyer</td><td>No charge</td><td class="start-date"></td><td class="end-date"></td><td><span class="status subscription-status"></span></td><td class="row-actions"></td></tr>
+            <tr data-id="M-291" data-status="free"><td>Summit Wealth · M-291</td><td>Free Buyer</td><td>No charge</td><td class="start-date"></td><td class="end-date"></td><td><span class="status subscription-status"></span></td><td class="row-actions"></td></tr>
+            <tr data-id="M-118" data-status="free"><td>Cedar Ridge Advisory · M-118</td><td>Seller</td><td>No charge</td><td class="start-date"></td><td class="end-date"></td><td><span class="status subscription-status"></span></td><td class="row-actions"></td></tr>
+            <tr data-id="M-087" data-status="free"><td>Noah Patel · M-087</td><td>Seller</td><td>No charge</td><td class="start-date"></td><td class="end-date"></td><td><span class="status subscription-status"></span></td><td class="row-actions"></td></tr>
+            <tr data-id="M-442" data-status="free"><td>North Shore Advisory · M-442</td><td>Seller</td><td>No charge</td><td class="start-date"></td><td class="end-date"></td><td><span class="status subscription-status"></span></td><td class="row-actions"></td></tr>
+            <tr data-id="M-056" data-status="free"><td>Louis Martin · M-056</td><td>Seller</td><td>No charge</td><td class="start-date"></td><td class="end-date"></td><td><span class="status subscription-status"></span></td><td class="row-actions"></td></tr>
+            <tr data-id="M-082" data-status="free"><td>Maple Leaf Advisors · M-082</td><td>Seller</td><td>No charge</td><td class="start-date"></td><td class="end-date"></td><td><span class="status subscription-status"></span></td><td class="row-actions"></td></tr>
+            <tr data-id="M-330" data-status="free"><td>Sophie Tremblay · M-330</td><td>Seller</td><td>No charge</td><td class="start-date"></td><td class="end-date"></td><td><span class="status subscription-status"></span></td><td class="row-actions"></td></tr>
           </tbody></table></div>
-          <div class="table-foot"><span id="subscriptionSummary">Sample subscription records for demonstration.</span><span>Manual ending takes effect immediately and records today&apos;s date.</span></div>
+          <div class="table-foot"><span id="subscriptionSummary">Sample membership records for demonstration.</span><span>Ending applies only to paid Premium Buyer subscriptions.</span></div>
         </section>
         <div class="footer-note">Advisor Capital · Internal admin prototype · Sample data</div>
       </section>

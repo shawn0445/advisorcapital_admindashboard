@@ -12,6 +12,10 @@
     return localStorage.getItem(`member-approved-${memberId}`) === 'true';
   }
 
+  function isRejected(memberId) {
+    return localStorage.getItem(`member-rejected-${memberId}`) === 'true';
+  }
+
   function announce(message) {
     toast.textContent = message;
     toast.classList.add('show');
@@ -26,9 +30,10 @@
     tables.forEach(table => {
       table.querySelectorAll('tbody tr').forEach(row => {
         const approved = isApproved(row.dataset.memberId);
+        const rejected = isRejected(row.dataset.memberId);
         const matchesSearch = !query || row.dataset.search.toLowerCase().includes(query);
-        row.hidden = approved || !matchesSearch;
-        if (!approved) pendingCounts[row.dataset.memberType]++;
+        row.hidden = approved || rejected || !matchesSearch;
+        if (!approved && !rejected) pendingCounts[row.dataset.memberType]++;
         if (!row.hidden && table.hidden === false) visibleCount++;
       });
     });
@@ -60,6 +65,7 @@
     infoFields.replaceChildren();
     window.MemberProfiles.appendProfileFields(infoFields, profile);
     document.getElementById('approveFromInfo').disabled = isApproved(row.dataset.memberId);
+    document.getElementById('rejectFromInfo').disabled = isApproved(row.dataset.memberId);
     infoBackdrop.classList.add('show');
   }
 
@@ -79,7 +85,12 @@
       aum: valueFor('Assets under management (CAD)'),
       askingPrice: valueFor('Indicative asking price (CAD)'),
       clients: valueFor('Approximate client count'),
+      annualRevenue: valueFor('Annual recurring revenue (CAD)'),
       transition: valueFor('Transition support offered'),
+      licensed: valueFor('Province(s) licensed'),
+      practiceType: valueFor('Practice type'),
+      city: valueFor('Practice city / region'),
+      saleTimeframe: valueFor('Expected sale timeframe'),
       posted: new Intl.DateTimeFormat('en-CA', { year: 'numeric', month: 'short', day: '2-digit' }).format(new Date())
     });
     localStorage.setItem('seller-alerts-approved', JSON.stringify(ads));
@@ -87,15 +98,23 @@
 
   function approve(row) {
     if (isApproved(row.dataset.memberId)) return;
+    localStorage.removeItem(`member-rejected-${row.dataset.memberId}`);
     localStorage.setItem(`member-approved-${row.dataset.memberId}`, 'true');
     localStorage.removeItem(`member-active-${row.dataset.memberId}`);
     if (row.dataset.memberType === 'seller') {
       saveSellerAlert(row);
-      announce(`${row.cells[0].textContent} approved and added to Seller Alerts.`);
+      announce(`${row.cells[0].textContent} approved and added to Matchmaking opportunities.`);
     } else {
       announce(`${row.cells[0].textContent} approved and added to the global buyer pool.`);
     }
     render();
+  }
+
+  function reject(row) {
+    if (isApproved(row.dataset.memberId) || isRejected(row.dataset.memberId)) return;
+    localStorage.setItem(`member-rejected-${row.dataset.memberId}`, 'true');
+    render();
+    announce(`${row.cells[0].textContent} request rejected.`);
   }
 
   tabs.forEach(tab => tab.addEventListener('click', () => {
@@ -116,10 +135,15 @@
     if (!row) return;
     if (button.dataset.action === 'view-info') showInfo(row);
     if (button.dataset.action === 'approve') approve(row);
+    if (button.dataset.action === 'reject') reject(row);
   });
 
   document.getElementById('approveFromInfo').addEventListener('click', () => {
     if (activeApplication) approve(activeApplication);
+    closeInfo();
+  });
+  document.getElementById('rejectFromInfo').addEventListener('click', () => {
+    if (activeApplication) reject(activeApplication);
     closeInfo();
   });
   document.getElementById('closeReviewInfo').addEventListener('click', closeInfo);

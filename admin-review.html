@@ -34,7 +34,7 @@
       <header class="topbar"><div class="crumb">Admin workspace <span style="padding:0 7px;color:#bdc6cf">/</span> <strong>Admin Review</strong></div><div class="top-actions"><span class="env-pill">Prototype · Sample data</span><button class="icon-btn" aria-label="Notifications">♧</button><div class="top-avatar">SA</div></div></header>
       <section class="content">
         <div class="page-head"><div><h1>Admin Review</h1><div class="subtitle">Review buyer and seller requests and check their submitted details before approval.</div></div></div>
-        <div class="notice"><span class="notice-icon">ⓘ</span><div>Approved buyers join the global buyer pool. Approved sellers are added to Seller Alerts. Use <strong>View info</strong> to review the application before approving.</div></div>
+        <div class="notice"><span class="notice-icon">ⓘ</span><div>Approved buyers join the global buyer pool. Approved sellers are added as opportunities to Matchmaking. Use <strong>View info</strong> to review the application before approving.</div></div>
         <section class="panel">
           <div class="panel-head"><div><div class="panel-title">Pending member applications</div><div class="panel-help">Review and approve members before they join the overall pool.</div></div></div>
           <div class="filters"><div class="search-wrap"><span class="search-icon">⌕</span><input class="search" id="reviewSearch" type="search" placeholder="Search applicants" aria-label="Search applicants" /></div></div>
@@ -44,28 +44,28 @@
           </div>
           <div class="table-wrap">
             <table class="review-table" id="reviewBuyers" role="tabpanel" aria-labelledby="reviewBuyersTab">
-              <thead><tr><th>Applicant</th><th>Profile ID</th><th>Region</th><th>AC Score</th><th>Profile summary</th><th>Review</th></tr></thead>
+              <thead><tr><th>Applicant</th><th>Profile ID</th><th>Region</th><th>AC Score</th><th>Licensed</th><th>Practice sought</th><th>Target AUM</th><th>Acquisition budget</th><th>Timeframe</th><th>Financing</th><th>Review</th></tr></thead>
               <tbody>
                 <tr data-member-id="M-515" data-member-type="buyer" data-region="Ontario" data-search="Emma Wilson M-515 Ontario succession buyer">
-                  <td>Emma Wilson</td><td>M-515</td><td>Ontario</td><td><span class="score score-low">55/100</span></td><td>Buyer applicant seeking an Ontario advisory practice.</td>
-                  <td><div class="row-actions"><button class="mini-btn" type="button" data-action="view-info">View info</button><button class="mini-btn approve" type="button" data-action="approve">Approve</button></div></td>
+                  <td>Emma Wilson</td><td>M-515</td><td>Ontario</td><td><span class="score score-low">55/100</span></td><td>ON · CFP</td><td>Financial planning</td><td>$10M–$50M</td><td>$500K–$1M</td><td>6–12 months</td><td>Undecided</td>
+                  <td><div class="row-actions"><button class="mini-btn" type="button" data-action="view-info">View info</button><button class="mini-btn approve" type="button" data-action="approve">Approve</button><button class="mini-btn reject" type="button" data-action="reject">Reject</button></div></td>
                 </tr>
                 <tr data-member-id="M-516" data-member-type="buyer" data-region="Alberta" data-search="Capital Path Partners M-516 Alberta buyer">
-                  <td>Capital Path Partners</td><td>M-516</td><td>Alberta</td><td><span class="score">63/100</span></td><td>Buyer applicant exploring Alberta opportunities.</td>
-                  <td><div class="row-actions"><button class="mini-btn" type="button" data-action="view-info">View info</button><button class="mini-btn approve" type="button" data-action="approve">Approve</button></div></td>
+                  <td>Capital Path Partners</td><td>M-516</td><td>Alberta</td><td><span class="score">63/100</span></td><td>AB · CFP, CIRO</td><td>Financial planning, Investment advisory</td><td>$15M–$60M</td><td>$750K–$1.5M</td><td>12–24 months</td><td>Pre-approved</td>
+                  <td><div class="row-actions"><button class="mini-btn" type="button" data-action="view-info">View info</button><button class="mini-btn approve" type="button" data-action="approve">Approve</button><button class="mini-btn reject" type="button" data-action="reject">Reject</button></div></td>
                 </tr>
               </tbody>
             </table>
             <table class="review-table" id="reviewSellers" role="tabpanel" aria-labelledby="reviewSellersTab" hidden>
-              <thead><tr><th>Applicant</th><th>Profile ID</th><th>Region</th><th>AC Score</th><th>Profile summary</th><th>Review</th></tr></thead>
+              <thead><tr><th>Applicant</th><th>Profile ID</th><th>Region</th><th>AC Score</th><th>Licensed</th><th>Practice type</th><th>Practice location</th><th>AUM</th><th>Asking price</th><th>Annual recurring revenue</th><th>Sale timeframe</th><th>Review</th></tr></thead>
               <tbody>
                 <tr data-member-id="M-620" data-member-type="seller" data-region="British Columbia" data-search="Willow Creek Advisory M-620 British Columbia seller">
-                  <td>Willow Creek Advisory</td><td>M-620</td><td>British Columbia</td><td><span class="score score-low">57/100</span></td><td>Seller applicant with a British Columbia advisory practice.</td>
-                  <td><div class="row-actions"><button class="mini-btn" type="button" data-action="view-info">View info</button><button class="mini-btn approve" type="button" data-action="approve">Approve</button></div></td>
+                  <td>Willow Creek Advisory</td><td>M-620</td><td>British Columbia</td><td><span class="score score-low">57/100</span></td><td>BC · CFP</td><td>Financial planning, Investment advisory</td><td>Vancouver, BC</td><td>$22M</td><td>$575K</td><td>$365K</td><td>6–12 months</td>
+                  <td><div class="row-actions"><button class="mini-btn" type="button" data-action="view-info">View info</button><button class="mini-btn approve" type="button" data-action="approve">Approve</button><button class="mini-btn reject" type="button" data-action="reject">Reject</button></div></td>
                 </tr>
                 <tr data-member-id="M-621" data-member-type="seller" data-region="Quebec" data-search="Laurentian Wealth M-621 Quebec seller">
-                  <td>Laurentian Wealth</td><td>M-621</td><td>Quebec</td><td><span class="score">66/100</span></td><td>Seller applicant with a Quebec advisory practice.</td>
-                  <td><div class="row-actions"><button class="mini-btn" type="button" data-action="view-info">View info</button><button class="mini-btn approve" type="button" data-action="approve">Approve</button></div></td>
+                  <td>Laurentian Wealth</td><td>M-621</td><td>Quebec</td><td><span class="score">66/100</span></td><td>QC · CFP, Insurance</td><td>Financial planning, Insurance</td><td>Montréal, QC</td><td>$27M</td><td>$680K</td><td>$430K</td><td>12–24 months</td>
+                  <td><div class="row-actions"><button class="mini-btn" type="button" data-action="view-info">View info</button><button class="mini-btn approve" type="button" data-action="approve">Approve</button><button class="mini-btn reject" type="button" data-action="reject">Reject</button></div></td>
                 </tr>
               </tbody>
             </table>
@@ -81,7 +81,7 @@
     <div class="modal review-info-modal">
       <div class="modal-head"><div><h2 id="reviewInfoTitle">Application details</h2><p id="reviewInfoSubtitle"></p></div><button class="close" id="closeReviewInfo" type="button" aria-label="Close">×</button></div>
       <div class="modal-body"><div id="reviewInfoFields"></div></div>
-      <div class="modal-foot"><button class="btn" id="cancelReviewInfo" type="button">Close</button><button class="btn btn-primary" id="approveFromInfo" type="button">Approve request</button></div>
+      <div class="modal-foot"><button class="btn" id="cancelReviewInfo" type="button">Close</button><button class="btn reject" id="rejectFromInfo" type="button">Reject request</button><button class="btn btn-primary" id="approveFromInfo" type="button">Approve request</button></div>
     </div>
   </div>
   <div class="toast" id="reviewToast" role="status" aria-live="polite"></div>

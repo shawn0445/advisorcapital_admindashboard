@@ -7,6 +7,7 @@
   <title>Matchmaking Review | Advisor Capital Admin</title>
     <link rel="stylesheet" href="advisor-capital-matchmaking-admin.css" />
     <script src="member-profiles.js" defer></script>
+    <script src="seller-opportunities.js" defer></script>
 </head>
 <body>
   <div class="app">
@@ -40,30 +41,24 @@
           <div><h1>Manual matchmaking</h1><div class="subtitle">An Advisor Capital user reviews profiles and creates each buyer–seller pairing.</div></div>
           <div class="head-actions"><button class="btn" id="exportBtn">↓ &nbsp;Export queue</button><button class="btn btn-primary" id="createMatchBtn">＋ &nbsp;Create manual match</button></div>
         </div>
-        <div class="notice"><span class="notice-icon">ⓘ</span><div><strong>Manual workflow.</strong> An authorized Advisor Capital user selects a buyer and seller, records the reason for pairing, and manages the review status. AC Score is not shown for a pairing because each member has an individual score. Approved pairings provide buyer and seller contact actions.</div></div>
+        <div class="notice"><span class="notice-icon">ⓘ</span><div><strong>Manual workflow.</strong> Review seller opportunities, see buyer scores individually, and create buyer–seller pairings. AC Score is not shown for a pairing because each member has an individual score. Approved pairings provide buyer and seller contact actions.</div></div>
 
         <div class="stats" aria-label="Matchmaking summary">
-          <div class="stat"><div><div class="stat-label">Awaiting review</div><div class="stat-value" id="statPending">4</div><div class="stat-note">Manually created pairings</div></div><div class="stat-icon">◷</div></div>
-          <div class="stat"><div><div class="stat-label">Approved this month</div><div class="stat-value" id="statApproved">2</div><div class="stat-note">Sample dashboard figure</div></div><div class="stat-icon">✓</div></div>
-          <div class="stat"><div><div class="stat-label">On hold</div><div class="stat-value" id="statHold">1</div><div class="stat-note">Need more information</div></div><div class="stat-icon">Ⅱ</div></div>
+          <div class="stat"><div><div class="stat-label">Opportunities</div><div class="stat-value" id="opportunityCount">0</div><div class="stat-note">Seller advertisements</div></div><div class="stat-icon">▤</div></div>
+          <div class="stat"><div><div class="stat-label">Pairings</div><div class="stat-value" id="pairingCount">0</div><div class="stat-note">Manual buyer–seller pairings</div></div><div class="stat-icon">⇄</div></div>
           <div class="stat"><div><div class="stat-label">Matching mode</div><div class="stat-value" style="font-size:21px">Manual</div><div class="stat-note">Managed by Advisor Capital</div></div><div class="stat-icon">✎</div></div>
+          <div class="stat"><div><div class="stat-label">AC Score</div><div class="stat-value" style="font-size:21px">Per member</div><div class="stat-note">No combined pair score</div></div><div class="stat-icon">◎</div></div>
         </div>
 
         <section class="panel">
-          <div class="panel-head"><div><div class="panel-title">Manually created pairings</div><div class="panel-help">Each pairing is selected and documented by an Advisor Capital user.</div></div></div>
+          <div class="panel-head"><div><div class="panel-title">Seller opportunities and pairings</div><div class="panel-help">Seller advertisements show practice details; suggested buyers are ranked by individual sample AC Score.</div></div></div>
           <div class="filters">
             <div class="search-wrap"><span class="search-icon">⌕</span><input class="search" id="searchInput" type="search" placeholder="Search by member, region or ID" /></div>
             <select class="select" id="regionFilter" aria-label="Filter by region"><option value="all">All regions</option><option>Ontario</option><option>Alberta</option><option>British Columbia</option><option>Quebec</option></select>
           </div>
-          <div class="tabs" id="matchStatusTabs" role="tablist" aria-label="Match status">
-            <button class="tab active" data-tab="pending" role="tab">Pending review <span class="tab-count" id="tabPending">4</span></button>
-            <button class="tab" data-tab="approved" role="tab">Approved <span class="tab-count" id="tabApproved">2</span></button>
-            <button class="tab" data-tab="hold" role="tab">On hold <span class="tab-count" id="tabHold">1</span></button>
-            <button class="tab" data-tab="dismissed" role="tab">Dismissed <span class="tab-count" id="tabDismissed">1</span></button>
-          </div>
           <div class="table-wrap">
             <table>
-              <thead><tr><th>Buyer and seller</th><th>Admin rationale</th><th>Region</th><th>Created by</th><th>Created</th><th>Status</th><th>Actions</th></tr></thead>
+              <thead><tr><th>Opportunity / pairing</th><th>Location</th><th>AUM</th><th>Annual revenue</th><th>Annual recurring revenue</th><th>Asking price</th><th>Sale timeframe</th><th>Created by</th><th>Created</th><th>Actions</th></tr></thead>
               <tbody id="matchRows">
                 <tr data-status="pending" data-region="Ontario" data-buyer="Maya Chen" data-buyer-id="M-204" data-seller="Cedar Ridge Advisory" data-seller-id="M-118" data-rationale="Buyer is exploring an Ontario succession opportunity; admin review required." data-search="Maya Chen Cedar Ridge Advisory Ontario M-204 M-118">
                   <td><div class="pair-cell"><div class="person"><div class="avatar">MC</div><div><div class="person-name">Maya Chen</div><div class="person-meta">Buyer · M-204</div></div></div><span class="pair-arrow">↔</span><div class="person"><div class="avatar">CR</div><div><div class="person-name">Cedar Ridge Advisory</div><div class="person-meta">Seller · M-118</div></div></div></div></td><td class="rationale">Buyer is exploring an Ontario succession opportunity; admin review required.</td><td>Ontario</td><td>Sarah Morgan</td><td>Oct 21, 2026</td><td><span class="status pending">Pending review</span></td><td><div class="row-actions"><button class="mini-btn" data-action="details">Details</button><button class="mini-btn approve" data-action="approve">Approve</button></div></td>
@@ -93,7 +88,7 @@
             </table>
             <div class="empty" id="emptyState"><strong>No matches found</strong>Try changing the search or filters.</div>
           </div>
-          <div class="table-foot"><span id="rowSummary">Showing 4 pairings awaiting review · Sample records for demonstration</span><div class="pagination"><button class="page-num">‹</button><button class="page-num current">1</button><button class="page-num">2</button><button class="page-num">›</button></div></div>
+          <div class="table-foot"><span id="rowSummary">Sample seller opportunities and pairings.</span><span>Scores are shown for individual buyers, not as a combined pair score.</span></div>
         </section>
         <div class="footer-note">Advisor Capital · Internal admin prototype · Sample member data</div>
       </section>
@@ -111,14 +106,21 @@
     <form class="modal" id="createMatchForm">
       <div class="modal-head"><div><h2 id="createModalTitle">Create a manual pairing</h2><p>Select one buyer and one seller, then record why you are pairing them.</p></div><button class="close" type="button" id="closeCreateModal" aria-label="Close">×</button></div>
       <div class="modal-body">
-        <div class="detail-section"><label class="detail-label" for="buyerSelect">Buyer</label><select class="search" id="buyerSelect" required><option value="">Select a buyer</option><option value="Maya Chen|M-204">Maya Chen · M-204</option><option value="Prairie Financial Group|M-301">Prairie Financial Group · M-301</option><option value="Ava Thompson|M-161">Ava Thompson · M-161</option><option value="Groupe Conseil Laurentides|M-275">Groupe Conseil Laurentides · M-275</option><option value="Oliver Grant|M-129">Oliver Grant · M-129</option><option value="Summit Wealth|M-291">Summit Wealth · M-291</option><option value="Emma Wilson|M-515" data-review-member="true" disabled>Emma Wilson · M-515</option><option value="Capital Path Partners|M-516" data-review-member="true" disabled>Capital Path Partners · M-516</option></select></div>
+        <div class="detail-section"><label class="detail-label" for="buyerSelect">Buyer</label><select class="search" id="buyerSelect" required><option value="">Select a buyer</option><option value="Maya Chen|M-204">Maya Chen · M-204</option><option value="Prairie Financial Group|M-301">Prairie Financial Group · M-301</option><option value="Ava Thompson|M-161">Ava Thompson · M-161</option><option value="Groupe Conseil Laurentides|M-275">Groupe Conseil Laurentides · M-275</option><option value="Oliver Grant|M-129">Oliver Grant · M-129</option><option value="Summit Wealth|M-291">Summit Wealth · M-291</option><option value="Emma Wilson|M-515" data-review-member="true" disabled>Emma Wilson · M-515</option><option value="Capital Path Partners|M-516" data-review-member="true" disabled>Capital Path Partners · M-516</option></select><div class="buyer-contact-actions"><a class="mini-btn" id="callBuyerBtn" href="#" aria-disabled="true">Call buyer</a><a class="mini-btn" id="emailBuyerBtn" href="#" aria-disabled="true">Email buyer</a></div></div>
         <div class="detail-section"><label class="detail-label" for="sellerSelect">Seller</label><select class="search" id="sellerSelect" required><option value="">Select a seller</option><option value="Cedar Ridge Advisory|M-118">Cedar Ridge Advisory · M-118</option><option value="Noah Patel|M-087">Noah Patel · M-087</option><option value="North Shore Advisory|M-442">North Shore Advisory · M-442</option><option value="Louis Martin|M-056">Louis Martin · M-056</option><option value="Maple Leaf Advisors|M-082">Maple Leaf Advisors · M-082</option><option value="Sophie Tremblay|M-330">Sophie Tremblay · M-330</option><option value="Willow Creek Advisory|M-620" data-review-member="true" disabled>Willow Creek Advisory · M-620</option><option value="Laurentian Wealth|M-621" data-review-member="true" disabled>Laurentian Wealth · M-621</option></select></div>
         <div class="detail-section"><label class="detail-label" for="matchRegion">Region</label><select class="search" id="matchRegion" required><option value="">Select a region</option><option>Ontario</option><option>Alberta</option><option>British Columbia</option><option>Quebec</option></select></div>
         <div class="detail-section"><label class="detail-label" for="matchRationale">Administrator rationale</label><textarea class="search" id="matchRationale" rows="3" required placeholder="Briefly record why this buyer and seller are being paired."></textarea></div>
         <div class="detail-section"><div class="detail-label">Created by</div><p style="margin:0;color:#53677b;font-size:11px">Signed-in Advisor Capital user</p></div>
       </div>
-      <div class="modal-foot"><button class="btn" type="button" id="cancelCreate">Cancel</button><button class="btn btn-primary" type="submit">Save pairing for review</button></div>
+      <div class="modal-foot"><button class="btn" type="button" id="cancelCreate">Cancel</button><button class="btn btn-primary" type="submit">Inform Buyer</button></div>
     </form>
+  </div>
+  <div class="modal-backdrop" id="matchSuggestionsBackdrop" role="dialog" aria-modal="true" aria-labelledby="matchSuggestionsTitle">
+    <div class="modal">
+      <div class="modal-head"><div><h2 id="matchSuggestionsTitle">Suggested buyers</h2><p id="matchSuggestionsSubtitle">Active buyers ranked by sample AC Score.</p></div><button class="close" id="closeMatchSuggestions" type="button" aria-label="Close">×</button></div>
+      <div class="modal-body"><div class="seller-match-list" id="matchSuggestionsList"></div></div>
+      <div class="modal-foot"><button class="btn" id="cancelMatchSuggestions" type="button">Close</button></div>
+    </div>
   </div>
     <script src="advisor-capital-matchmaking-admin.js" defer></script>
 </body>

@@ -7,6 +7,7 @@
   <title>Seller Alerts | Advisor Capital Admin</title>
   <link rel="stylesheet" href="advisor-capital-matchmaking-admin.css" />
   <script src="member-profiles.js" defer></script>
+  <script src="seller-opportunities.js" defer></script>
   <script src="seller-alerts.js" defer></script>
 </head>
 <body>
@@ -33,41 +34,21 @@
     <main class="main">
       <header class="topbar"><div class="crumb">Admin workspace <span style="padding:0 7px;color:#bdc6cf">/</span> <strong>Seller Alerts</strong></div><div class="top-actions"><span class="env-pill">Prototype · Sample data</span><button class="icon-btn" aria-label="Notifications">♧</button><div class="top-avatar">SA</div></div></header>
       <section class="content">
-        <div class="page-head"><div><h1>Seller Alerts</h1><div class="subtitle">Seller advertisements and announcements. A seller can publish multiple ads.</div></div></div>
-        <div class="notice score-guidance"><span class="notice-icon">ⓘ</span><div><strong>AC Score guidance · Sample scores only.</strong> 0–59 = low; 60–69 = good; 70–80 = strong; 81–90 = very strong; 91–100 = exceptional. Buyer suggestions include all active buyers and are ranked by illustrative scores, not calculated matches.</div></div>
-        <div class="seller-ad-list" id="sellerAdList">
-          <article class="seller-ad-card" data-ad-id="SA-101" data-seller-id="M-118" data-seller="Cedar Ridge Advisory" data-region="Ontario" data-scores="M-204:92,M-301:84,M-161:74,M-275:68,M-129:88,M-291:78">
-            <div class="seller-ad-head"><div><h2 class="seller-ad-title">Established Toronto practice seeking a successor</h2><div class="seller-ad-meta">Cedar Ridge Advisory · M-118 · Ontario · Posted Oct 20, 2026</div></div><button class="btn btn-primary" type="button" data-action="suggestions">Suggested matchmaking</button></div>
-            <p class="seller-ad-description">Client-focused financial planning and investment advisory practice available for succession. Seller is open to a structured handover.</p>
-            <div class="seller-ad-details"><span class="signal good">$35M AUM</span><span class="signal">$750K indicative asking price</span><span class="signal">250 clients</span><span class="signal">6 months transition support</span></div>
-          </article>
-          <article class="seller-ad-card" data-ad-id="SA-102" data-seller-id="M-118" data-seller="Cedar Ridge Advisory" data-region="Ontario" data-scores="M-204:89,M-301:76,M-161:72,M-275:64,M-129:93,M-291:81">
-            <div class="seller-ad-head"><div><h2 class="seller-ad-title">Additional client book available for acquisition</h2><div class="seller-ad-meta">Cedar Ridge Advisory · M-118 · Ontario · Posted Oct 22, 2026</div></div><button class="btn btn-primary" type="button" data-action="suggestions">Suggested matchmaking</button></div>
-            <p class="seller-ad-description">A second opportunity from this seller: recurring-revenue client relationships with a flexible transition plan for the right buyer.</p>
-            <div class="seller-ad-details"><span class="signal good">$18M AUM</span><span class="signal">$420K indicative asking price</span><span class="signal">120 clients</span><span class="signal">Flexible transition support</span></div>
-          </article>
-          <article class="seller-ad-card" data-ad-id="SA-103" data-seller-id="M-442" data-seller="North Shore Advisory" data-region="British Columbia" data-scores="M-204:65,M-301:79,M-161:86,M-275:61,M-129:73,M-291:91">
-            <div class="seller-ad-head"><div><h2 class="seller-ad-title">Vancouver advisory practice succession opportunity</h2><div class="seller-ad-meta">North Shore Advisory · M-442 · British Columbia · Posted Oct 19, 2026</div></div><button class="btn btn-primary" type="button" data-action="suggestions">Suggested matchmaking</button></div>
-            <p class="seller-ad-description">Well-established investment advisory practice seeking a buyer interested in continuity and a gradual client introduction.</p>
-            <div class="seller-ad-details"><span class="signal good">$42M AUM</span><span class="signal">$900K indicative asking price</span><span class="signal">310 clients</span><span class="signal">12 months transition support</span></div>
-          </article>
-          <article class="seller-ad-card" data-ad-id="SA-104" data-seller-id="M-082" data-seller="Maple Leaf Advisors" data-region="Ontario" data-scores="M-204:82,M-301:71,M-161:66,M-275:62,M-129:90,M-291:77">
-            <div class="seller-ad-head"><div><h2 class="seller-ad-title">Ottawa investment advisory client book</h2><div class="seller-ad-meta">Maple Leaf Advisors · M-082 · Ontario · Posted Oct 17, 2026</div></div><button class="btn btn-primary" type="button" data-action="suggestions">Suggested matchmaking</button></div>
-            <p class="seller-ad-description">Investment advisory client book for a buyer with relevant experience and a commitment to smooth client transitions.</p>
-            <div class="seller-ad-details"><span class="signal good">$31M AUM</span><span class="signal">$700K indicative asking price</span><span class="signal">225 clients</span><span class="signal">6 months transition support</span></div>
-          </article>
-        </div>
-        <div class="footer-note">Advisor Capital · Internal admin prototype · Sample seller advertisements</div>
+        <div class="page-head"><div><h1>Seller Alerts</h1><div class="subtitle">Review seller advertisements and explore suggested buyer matches.</div></div></div>
+        <div class="notice"><span class="notice-icon">ⓘ</span><div>Seller advertisements are shown here and copied to Matchmaking for admin workflows. One seller may have multiple opportunities; AC Scores are illustrative and shown per buyer.</div></div>
+        <div class="seller-ad-list" id="sellerAdList" aria-live="polite"></div>
+        <div class="head-actions" style="margin-top:18px"><a class="btn" href="advisor-capital-matchmaking-admin.html">Open Matchmaking</a></div>
+        <div class="footer-note">Advisor Capital · Internal admin prototype</div>
       </section>
     </main>
   </div>
+  <div class="toast" id="sellerAlertsToast" role="status" aria-live="polite"></div>
   <div class="modal-backdrop" id="sellerSuggestionsBackdrop" role="dialog" aria-modal="true" aria-labelledby="sellerSuggestionsTitle">
     <div class="modal">
-      <div class="modal-head"><div><h2 id="sellerSuggestionsTitle">Suggested buyers</h2><p id="sellerSuggestionsSubtitle">Active buyers ranked by sample AC Score.</p></div><button class="close" id="closeSellerSuggestions" aria-label="Close">×</button></div>
+      <div class="modal-head"><div><h2 id="sellerSuggestionsTitle">Buyer suggestions</h2><p id="sellerSuggestionsSubtitle">Active buyers ranked by illustrative AC Score.</p></div><button class="close" id="closeSellerSuggestions" aria-label="Close">×</button></div>
       <div class="modal-body"><div class="seller-match-list" id="sellerMatchList"></div></div>
-      <div class="modal-foot"><button class="btn" id="cancelSellerSuggestions" type="button">Close</button></div>
+      <div class="modal-foot"><button class="btn" id="cancelSellerSuggestions">Close</button></div>
     </div>
   </div>
-  <div class="toast" id="sellerAlertsToast" role="status" aria-live="polite"></div>
 </body>
 </html>

@@ -189,6 +189,7 @@
     .seller-match-actions { display: grid; gap: 6px; }
     #sellerSuggestionsBackdrop .modal { width: min(1000px, 100%); max-height: 90vh; overflow: auto; }
     .score-gauge { position: relative; display: grid; place-items: center; width: 54px; height: 54px; flex: 0 0 54px; border-radius: 50%; background: conic-gradient(#168f87 var(--score-angle), #e5eaf0 0); color: #16805f; font-size: 14px; font-weight: 800; }
+    .score-gauge.score-low { background: conic-gradient(#9aa5b1 var(--score-angle), #e5eaf0 0); color: #758397; }
     .score-gauge:before { position: absolute; inset: 5px; border-radius: 50%; background: #fff; content: ""; }
     .score-gauge span { position: relative; }
     .match-member-card { min-width: 0; }
@@ -200,12 +201,24 @@
     .review-info-modal { width: min(950px, 100%); max-height: 90vh; overflow: auto; }
     #reviewInfoFields .member-profile-grid { grid-template-columns: repeat(4, minmax(130px, 1fr)); }
     .row-actions a { text-decoration: none; }
+    .review-table { min-width: 1450px; }
+    #matchRows { min-width: 0; }
+    #matchRows td { min-width: 112px; }
+    #matchRows td:first-child { min-width: 255px; }
+    #matchRows td:last-child { min-width: 190px; }
+    .match-opportunity-cell .person { margin: 4px 0; }
+    .match-row-actions { flex-wrap: wrap; white-space: normal; }
+    .buyer-contact-actions { display: flex; gap: 7px; margin-top: 8px; }
+    .buyer-contact-actions [aria-disabled="true"] { opacity: .5; pointer-events: none; }
+    .mini-btn.reject, .btn.reject { color: #a54848; border-color: #e6caca; background: #fff; }
+    .mini-btn.reject:hover, .btn.reject:hover { color: #fff; border-color: #bd5d5d; background: #bd5d5d; }
+    #createMatchForm .modal-foot { position: sticky; bottom: 0; }
     #memberModalBackdrop .modal { width: min(950px, 100%); max-height: 90vh; overflow: auto; }
     .subscription-free { color: #738397; font-size: 10px; }
     .subscription-paid { color: #16805f; font-weight: 700; }
     @media (max-width: 1050px) { .member-profile-grid { grid-template-columns: repeat(3, minmax(130px, 1fr)); } .seller-match-item { grid-template-columns: 1fr; } }
     .toast { z-index: 30; }
     @media (max-width: 1050px) { .app { grid-template-columns: 210px minmax(0,1fr); } .content { padding: 25px 22px 40px; } .topbar { padding: 0 22px; } .stats { grid-template-columns: repeat(2,1fr); } }
-    @media (max-width: 720px) { .app { display: block; } .sidebar { display: none; } .topbar { height: 58px; padding: 0 16px; } .content { padding: 22px 14px 35px; } .page-head { display: block; } .head-actions { margin-top: 15px; } .stats { gap: 9px; } .stat { min-height: 82px; padding: 12px; } .stat-value { font-size: 21px; } .panel-head { padding: 15px 14px 0; } .filters { padding: 13px 14px; } .tabs { gap: 17px; padding: 0 14px; overflow-x: auto; } .table-foot { padding: 11px 14px; } .env-pill { display: none; } }
+    @media (max-width: 720px) { .app { display: block; } .sidebar { display: none; } .topbar { height: 58px; padding: 0 16px; } .content { padding: 22px 14px 35px; } .page-head { display: block; } .head-actions { margin-top: 15px; } .stats { gap: 9px; } .stat { min-height: 82px; padding: 12px; } .stat-value { font-size: 21px; } .panel-head { padding: 15px 14px 0; } .filters { padding: 13px 14px; } .tabs { gap: 17px; padding: 0 14px; overflow-x: auto; } .table-foot { padding: 11px 14px; } .env-pill { display: none; } .review-table { min-width: 1450px; } }
     @media (max-width: 720px) { .member-profile-grid, .member-profile-modal .member-profile-grid, #reviewInfoFields .member-profile-grid { grid-template-columns: repeat(2, minmax(120px, 1fr)); } .seller-ad-head { display: block; } .seller-ad-head .btn { margin-top: 12px; } .match-member-card .member-profile-grid, .seller-buyer-offer .member-profile-grid { grid-template-columns: repeat(2, minmax(110px, 1fr)); } }
     @media (max-width: 420px) { h1 { font-size: 22px; } .stats { grid-template-columns: 1fr 1fr; } .stat-icon { width: 31px; height: 31px; } .head-actions .btn { padding: 8px 10px; } .detail-pair { grid-template-columns: 1fr; } .member-profile-grid, .member-profile-modal .member-profile-grid, #reviewInfoFields .member-profile-grid { grid-template-columns: 1fr; } .match-member-card .member-profile-grid, .seller-buyer-offer .member-profile-grid { grid-template-columns: 1fr; } }

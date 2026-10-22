@@ -192,6 +192,56 @@
     });
   }
 
+  function addDefaultSellerAds() {
+    window.SellerOpportunities.sampleAds.forEach(ad => {
+      if ([...sellerAdList.querySelectorAll('.seller-ad-card')].some(card => card.dataset.adId === ad.adId)) return;
+      const card = document.createElement('article');
+      card.className = 'seller-ad-card';
+      card.dataset.adId = ad.adId;
+      card.dataset.sellerId = ad.sellerId;
+      card.dataset.seller = ad.sellerName;
+      card.dataset.region = ad.region;
+      card.dataset.scores = Object.entries(ad.scores).map(([id, score]) => `${id}:${score}`).join(',');
+
+      const header = document.createElement('div');
+      header.className = 'seller-ad-head';
+      const text = document.createElement('div');
+      const title = document.createElement('h2');
+      title.className = 'seller-ad-title';
+      title.textContent = ad.title;
+      const meta = document.createElement('div');
+      meta.className = 'seller-ad-meta';
+      meta.textContent = `${ad.sellerName} · ${ad.sellerId} · ${ad.region} · Posted ${ad.posted}`;
+      text.append(title, meta);
+      const suggestions = document.createElement('button');
+      suggestions.type = 'button';
+      suggestions.className = 'btn btn-primary';
+      suggestions.dataset.action = 'suggestions';
+      suggestions.textContent = 'Suggested matchmaking';
+      header.append(text, suggestions);
+
+      const description = document.createElement('p');
+      description.className = 'seller-ad-description';
+      description.textContent = ad.description;
+      const details = document.createElement('div');
+      details.className = 'seller-ad-details';
+      [
+        `${ad.city} · ${ad.aum} AUM`,
+        `${ad.annualRevenue} annual revenue`,
+        `${ad.annualRecurringRevenue} annual recurring revenue`,
+        `${ad.askingPrice} asking price`,
+        `Sale timeframe: ${ad.saleTimeframe}`
+      ].forEach(label => {
+        const signal = document.createElement('span');
+        signal.className = 'signal';
+        signal.textContent = label;
+        details.append(signal);
+      });
+      card.append(header, description, details);
+      sellerAdList.append(card);
+    });
+  }
+
   sellerAdList.addEventListener('click', event => {
     const button = event.target.closest('button[data-action="suggestions"]');
     if (!button) return;
@@ -207,5 +257,6 @@
     if (event.key === 'Escape') closeSuggestions();
   });
   window.addEventListener('storage', addApprovedSellerAds);
+  addDefaultSellerAds();
   addApprovedSellerAds();
 })();
